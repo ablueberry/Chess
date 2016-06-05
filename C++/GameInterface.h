@@ -6,8 +6,8 @@ using namespace std;
 class GameInterface {
 private:
 	static const int ROWS = 8, COLS = 8;
-	string char_board[ROWS][COLS];
 	Piece* piece_board[ROWS][COLS];
+	string char_board[ROWS][COLS];
 	string userName1;
 	string userName2;
 

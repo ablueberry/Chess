@@ -11,7 +11,7 @@ GameInterface::GameInterface(string user1, string user2)
 }
 
 void GameInterface::initBoard() {
-	string row = "RNBQKNBR";
+	string row = "RNBQKBNR";
 	for (int col = 0; col < COLS; col++) {
 		char_board[0][col] = row[col] + 32;
 		char_board[1][col] = 'p';
@@ -119,12 +119,20 @@ string GameInterface::getPiece(int row, int col) {
 }
 
 void GameInterface::renderBoard() {
-	cout << endl;
+	cout<<endl;
+	cout << "\033c";
+	cout<<"      ";
+	// for (int i = 8; i > 0; i--) {
+	// 	cout<<i+1<<"    ";
+	// }
+	cout<<"a    b    c    d    e    f    g    h";
+	cout<<endl;
 	for (int i = 0; i < 8; i++) {
+		cout<<8-i;
 		for (int j = 0; j < 8; j++) {
-			cout << " | " << getPiece(i, j);
+			cout << "  | " << getPiece(i, j);
 		} 
-		cout << " |" << endl;
+		cout << "  |" << endl;
 	}
 }
 

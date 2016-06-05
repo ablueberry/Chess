@@ -13,49 +13,49 @@ Piece::Piece(string user, int num, int r, int c, string i)
 King::King(string user, int num, int r, int c) 
 	: Piece(user, num, r, c, "King") {
 	  	if (playerNum == 1) {
-	  		icon = "K";
+	  		icon = "\u2654";
 	  	} else {
-	  		icon = "k";
+	  		icon = "\u265A";
 	  	}
 	}
 Queen::Queen(string user, int num, int r, int c) 
 	: Piece(user, num, r, c, "Queen") {
 	  	if (playerNum == 1) {
-	  		icon = "Q";
+	  		icon = "\u2655";
 	  	} else {
-	  		icon = "q";
+	  		icon = "\u265B";
 	  	}
 	}
 Rook::Rook(string user, int num, int r, int c) 
 	: Piece(user, num, r, c, "Rook") {
 	  	if (playerNum == 1) {
-	  		icon = "R";
+	  		icon = "\u2656";
 	  	} else {
-	  		icon = "r";
+	  		icon = "\u265C";
 	  	}
 	}
 Bishop::Bishop(string user, int num, int r, int c) 
 	: Piece(user, num, r, c, "Bishop") {
 	  	if (playerNum == 1) {
-	  		icon = "B";
+	  		icon = "\u2657";
 	  	} else {
-	  		icon = "b";
+	  		icon = "\u265D";
 	  	}
 	}
 Knight::Knight(string user, int num, int r, int c) 
 	: Piece(user, num, r, c, "Knight") {
 	  	if (playerNum == 1) {
-	  		icon = "N";
+	  		icon = "\u2658";
 	  	} else {
-	  		icon = "n";
+	  		icon = "\u265E";
 	  	}
 	}
 Pawn::Pawn(string user, int num, int r, int c) 
 	: Piece(user, num, r, c, "Pawn") {
 	  	if (playerNum == 1) {
-	  		icon = "P";
+	  		icon = "\u2659";
 	  	} else {
-	  		icon = "p";
+	  		icon = "\u265F";
 	  	}
 	}
 Empty::Empty(int r, int c) 
