@@ -2,16 +2,24 @@
 #include "Piece.h"
 using namespace std;
 
-Piece::Piece(string user, int num, int r, int c) 
+Piece::Piece(string user, int num, int r, int c, string i) 
 	: playerName(user), 
 	  playerNum(num),
 	  row(r),
-	  col(c) 
+	  col(c),
+	  instance(i) 
 	  {};
 
+King::King(string user, int num, int r, int c) 
+	: Piece(user, num, r, c, "King") {
+	  	if (playerNum == 1) {
+	  		icon = "K";
+	  	} else {
+	  		icon = "k";
+	  	}
+	}
 Queen::Queen(string user, int num, int r, int c) 
-	: Piece(user, num, r, c),
-	  instance("Queen") {
+	: Piece(user, num, r, c, "Queen") {
 	  	if (playerNum == 1) {
 	  		icon = "Q";
 	  	} else {
@@ -19,8 +27,7 @@ Queen::Queen(string user, int num, int r, int c)
 	  	}
 	}
 Rook::Rook(string user, int num, int r, int c) 
-	: Piece(user, num, r, c),
-	  instance("Rook") {
+	: Piece(user, num, r, c, "Rook") {
 	  	if (playerNum == 1) {
 	  		icon = "R";
 	  	} else {
@@ -28,8 +35,7 @@ Rook::Rook(string user, int num, int r, int c)
 	  	}
 	}
 Bishop::Bishop(string user, int num, int r, int c) 
-	: Piece(user, num, r, c),
-	  instance("Bishop") {
+	: Piece(user, num, r, c, "Bishop") {
 	  	if (playerNum == 1) {
 	  		icon = "B";
 	  	} else {
@@ -37,8 +43,7 @@ Bishop::Bishop(string user, int num, int r, int c)
 	  	}
 	}
 Knight::Knight(string user, int num, int r, int c) 
-	: Piece(user, num, r, c),
-	  instance("Knight") {
+	: Piece(user, num, r, c, "Knight") {
 	  	if (playerNum == 1) {
 	  		icon = "N";
 	  	} else {
@@ -46,8 +51,7 @@ Knight::Knight(string user, int num, int r, int c)
 	  	}
 	}
 Pawn::Pawn(string user, int num, int r, int c) 
-	: Piece(user, num, r, c),
-	  instance("Pawn") {
+	: Piece(user, num, r, c, "Pawn") {
 	  	if (playerNum == 1) {
 	  		icon = "P";
 	  	} else {
@@ -55,25 +59,23 @@ Pawn::Pawn(string user, int num, int r, int c)
 	  	}
 	}
 Empty::Empty(int r, int c) 
-	: row(r),
-	  col(c),
-	  instance("Empty") {
+	: Piece("", 0, r, c, "Empty") {
 		icon = " ";	
   	}
-}
 
-void Piece::setPosition(int row, int col) {
-	this->row = row;
-	this->col = col;
-}
+
+// void Piece::setPosition(int row, int col) {
+// 	this->row = row;
+// 	this->col = col;
+// }
 
 /*
 	DOKOŃCZ BO NIE PAMIĘTAM OPERACJI NA WSKAŹNIKACH
 	ma zmieniać dane parametry na szerokość i długość figury
 */
-void Piece::getPosition(int* row, int* col) {
+// void Piece::getPosition(int* row, int* col) {
 
-}
+// }
 
 string Piece::instanceof() {
 	return instance;
@@ -87,54 +89,54 @@ string Piece::getPlayer() {
 	return playerName;
 }
 
-void King::move (int row, int col) {
+// void King::move (int row, int col) {
 
-}
+// }
 
-void Queen::move (int row, int col) {
+// void Queen::move (int row, int col) {
 
-}
+// }
 
-void Rook::move (int row, int col) {
+// void Rook::move (int row, int col) {
 
-}
+// }
 
-void Bishop::move (int row, int col) {
+// void Bishop::move (int row, int col) {
 
-}
+// }
 
-void Knight::move (int row, int col) {
+// void Knight::move (int row, int col) {
 
-}
+// }
 
-void Pawn::move (int row, int col) {
+// void Pawn::move (int row, int col) {
 
-}
+// }
 
 
-bool King::possibleMove (int row, int col) {
+// bool King::possibleMove (int row, int col) {
 
-}
+// }
 
-bool Queen::possibleMove (int row, int col) {
+// bool Queen::possibleMove (int row, int col) {
 
-}
+// }
 
-bool Rook::possibleMove (int row, int col) {
+// bool Rook::possibleMove (int row, int col) {
 
-}
+// }
 
-bool Bishop::possibleMove (int row, int col) {
+// bool Bishop::possibleMove (int row, int col) {
 
-}
+// }
 
-bool Knight::possibleMove (int row, int col) {
+// bool Knight::possibleMove (int row, int col) {
 
-}
+// }
 
-bool Pawn::possibleMove (int row, int col) {
+// bool Pawn::possibleMove (int row, int col) {
 
-}
+// }
 
 /*
 SNIPPET :)

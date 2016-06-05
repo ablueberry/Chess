@@ -1,5 +1,7 @@
 #ifndef PIECE
 #define PIECE
+#include <iostream>
+using namespace std;
 class Piece {
 protected:
 	int row;
@@ -14,14 +16,14 @@ protected:
 public: 
 	// TODO implement these:
 	// DOPISZ DESTRUKTORRRR !!!!!!!
-	Piece(string user, int num, int r, int c);
+	Piece(string user, int num, int r, int c, string i);
 	void setPosition(int row, int col);
 	void getPosition(int* row, int* col);
 	string instanceof();
 	string getIcon();
 	string getPlayer();
-	virtual void move(int row, int col) = 0;
-	virtual bool possibleMove(int row, int col) = 0;
+	// virtual void move(int row, int col) = 0;
+	// virtual bool possibleMove(int row, int col) = 0;
 	
 
 };
@@ -78,7 +80,7 @@ class Empty : public Piece {
 private:
 
 public:
-	Empty(int r, int c)
+	Empty(int r, int c);
 };
 
 #endif
