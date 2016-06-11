@@ -64,18 +64,10 @@ Empty::Empty(int r, int c)
   	}
 
 
-// void Piece::setPosition(int row, int col) {
-// 	this->row = row;
-// 	this->col = col;
-// }
-
-/*
-	DOKOŃCZ BO NIE PAMIĘTAM OPERACJI NA WSKAŹNIKACH
-	ma zmieniać dane parametry na szerokość i długość figury
-*/
-// void Piece::getPosition(int* row, int* col) {
-
-// }
+void Piece::setPosition(int r, int c) {
+	row = r;
+	col = c;
+}
 
 string Piece::instanceof() {
 	return instance;
@@ -89,54 +81,138 @@ string Piece::getPlayer() {
 	return playerName;
 }
 
-// void King::move (int row, int col) {
+bool King::move (int r, int c) {
+	if (r == row+1 || r == row-1) {
+		if (c == col+1 || c == col || c == col-1) {
+			return true;
+		} else {
+			return false;
+		}
+	} else if (r == row) {
+		if (c == col+1 || c == col-1) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
 
-// }
+bool Queen::move (int r, int c) {
+	if (r == row) {
+		return true;
+	} else if (c == col) {
+		return true;
+	} else {
+		return false;
+	}
+	for (int i = 1; i < 8; i++) {
+		if (r == row+i && c == col+i) {
+			return true;
+		} else if (r == row+i && c == col-i) {
+			return true;
+		} else if (r == row-i && c == col+i) {
+			return true;
+		} else if (r == row-i && c == col-i) {
+			return true;
+		}
+	}
+}
 
-// void Queen::move (int row, int col) {
+bool Rook::move (int r, int c) {
+	if (r == row) {
+		return true;
+	} else if (c == col) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
-// }
+bool Bishop::move (int r, int c) {
+	for (int i = 1; i < 8; i++) {
+		if (r == row+i && c == col+i) {
+			return true;
+		} else if (r == row+i && c == col-i) {
+			return true;
+		} else if (r == row-i && c == col+i) {
+			return true;
+		} else if (r == row-i && c == col-i) {
+			return true;
+		}
+	}
+	return false;
+}
 
-// void Rook::move (int row, int col) {
+bool Knight::move (int r, int c) {
+	if (r == row+1 || r == row-1) {
+		if (c == col+2 || c == col-2) {
+			return true;
+		}
+	} else if (r == row+2 || r == row-2) {
+		if (c == col+1 || c == col+1) {
+			return true;
+		}
+	} else {
+		return false;
+	}
+}
 
-// }
+bool Pawn::move (int r, int c) {
+	// Góra planszy
+	if (playerNum == 2) {
+		if (row == 6) {
+			if (c == col) {
+				if (r == row+1 || r == row+2) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			if (c == col) {
+				if (r == row+1) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+	} else {
+		// Dół planszy
+		if (row  == 1) {
+			if (c == col) {
+				if (r == row-1 || r == row-2) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			if (c == col) {
+				if (r == row-1) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+	}
+}
 
-// void Bishop::move (int row, int col) {
+bool Empty::move(int row, int col) {
+	return false;
+}
 
-// }
-
-// void Knight::move (int row, int col) {
-
-// }
-
-// void Pawn::move (int row, int col) {
-
-// }
-
-
-// bool King::possibleMove (int row, int col) {
-
-// }
-
-// bool Queen::possibleMove (int row, int col) {
-
-// }
-
-// bool Rook::possibleMove (int row, int col) {
-
-// }
-
-// bool Bishop::possibleMove (int row, int col) {
-
-// }
-
-// bool Knight::possibleMove (int row, int col) {
-
-// }
-
-// bool Pawn::possibleMove (int row, int col) {
-
-// }
 
 /*
 SNIPPET :)

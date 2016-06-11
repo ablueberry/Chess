@@ -59,60 +59,6 @@ void GameInterface::charToPiece() {
 	}
 }
 
-// void GameInterface::pieceToChar(){
-// 	for (int row = 0; row < ROWS; row++) {
-// 		for (int col = 0; col < COLS; col++) {
-// 			Piece piece = piece_board[row][col];
-// 			switch (piece.instanceof()) {
-// 				case "Rook":
-// 				if (piece.getPlayer() == user1)
-// 					char_board[row][col] = "R";
-// 				if (piece.getPlayer() == user2)
-// 					char_board[row][col] = "r";
-// 				break;
-
-// 				case "Knight":
-// 				if (piece.getPlayer() == user1)
-// 					char_board[row][col] = "N";
-// 				if (piece.getPlayer() == user2)
-// 					char_board[row][col] = "n";
-// 				break;
-
-// 				case "Bishop":
-// 				if (piece.getPlayer() == user1)
-// 					char_board[row][col] = "B";
-// 				if (piece.getPlayer() == user2)
-// 					char_board[row][col] = "b";
-// 				break;
-
-// 				case "Queen":
-// 				if (piece.getPlayer() == user1)
-// 					char_board[row][col] = "Q";
-// 				if (piece.getPlayer() == user2)
-// 					char_board[row][col] = "q";
-// 				break;
-
-// 				case "King":
-// 				if (piece.getPlayer() == user1)
-// 					char_board[row][col] = "K";
-// 				if (piece.getPlayer() == user2)
-// 					char_board[row][col] = "k";
-// 				break;
-
-// 				case "Pawn":
-// 				if (piece.getPlayer() == user1)
-// 					char_board[row][col] = "P";
-// 				if (piece.getPlayer() == user2)
-// 					char_board[row][col] = "p";
-// 				break;
-
-// 				default:
-// 				char_board[row][col] = " ";
-// 				break;				 
-// 			}
-// 		}
-// 	}
-// }
 
 string GameInterface::getPiece(int row, int col) {
 	return piece_board[row][col]->getIcon();
@@ -122,9 +68,6 @@ void GameInterface::renderBoard() {
 	cout<<endl;
 	cout << "\033c";
 	cout<<"      ";
-	// for (int i = 8; i > 0; i--) {
-	// 	cout<<i+1<<"    ";
-	// }
 	cout<<"a    b    c    d    e    f    g    h";
 	cout<<endl;
 	for (int i = 0; i < 8; i++) {
@@ -136,3 +79,38 @@ void GameInterface::renderBoard() {
 	}
 }
 
+bool GameInterface::makeMove(int row, int col, int newRow, int newCol, string user) {
+	Piece* piece = piece_board[row][col];
+	Piece* dest = piece_board[newRow][newCol];
+	
+	if (row >= 0 && row <= 7 && col >= 0  && col <= 7 && newRow >= 0 && newRow <= 7 && newCol >= 0  && newCol <= 7 ) {
+		if (piece->instanceof() == "Empty") {
+			cout << "Can't move empty field\n";
+			return false;
+		} else if (piece->getPlayer() != user) {
+			cout << "It's not your piece\n";
+			return false;
+		} else if (piece->getPlayer() == dest->getPlayer()) {
+			cout << "Can't attack yourself\n";
+			return false;
+		} else if (piece->move(newRow, newCol)) {
+			cout << "Valid move, trying to make it\n";
+			char_board[newRow][newCol] = char_board[row][col];
+			char_board[row][col] = " ";
+			deletePiece_board();
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+void GameInterface::deletePiece_board() {
+	for (int i  = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			delete piece_board[i][j];
+		}
+	}
+}

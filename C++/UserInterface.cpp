@@ -4,7 +4,7 @@
 using namespace std;
 
 void UserInterface::init() {
-	// menu();
+	
 	cout << "\033c";
 	cout << "Welcome to CHESS \n\n";
 	cout << "User 1. name: ";
@@ -15,45 +15,49 @@ void UserInterface::init() {
 	cin.get();
 	game = new GameInterface(user1, user2);
 	game->renderBoard();
+
 	while (1) {
+		cout << user1 << " - black\n" << user2 << " - white\n";
 		turn(user1);
+		afterTurn();
+		cout << user1 << " - black\n" << user2 << " - white\n";
 		turn(user2);
+		afterTurn();
 	}
 }
 void UserInterface::turn(string user) {
-	int choice, row, newRow;
+	int row, newRow;
 	char col, newCol;
 	int r, c, nr, nc;
+	bool valid;
 	cout << "This is " << user <<"'s turn: ";
-	cout << "Enter '1' to check possible moves" << endl;
-	cout << "Emter '0' to make a move" << endl;
-	cin >> choice;
-	cout << "Enter piece's row:";
-	cin >> row;
-	cout << "Enter piece's column:";
-	cin >> col;
-	r = rowToInt(row);
-	c = colToInt(col);
-	if (choice) {
-		possibleMove(r, c);
-		cin.get();
-	} else {
-		cout << "Enter new piece's row:";
-		cin >> newRow;
+	do {
+		cout << "Enter piece's column:";
+		cin >> col;
+		cout << "Enter piece's row:";
+		cin >> row;
+		r = rowToInt(row);
+		c = colToInt(col);
 		cout << "Enter new piece's column:";
 		cin >> newCol;
+		cout << "Enter new piece's row:";
+		cin >> newRow;
 		nr = rowToInt(newRow);
 		nc = colToInt(newCol);
-		makeMove(r, c, nr, nc);
-	}
+		valid = makeMove(r, c, nr, nc, user);
+		if (!valid) {
+			cout << "Invalid move!!!" << endl << endl;  
+		}
+	} while ( !valid );
 }
 
-void UserInterface::possibleMove(int row, int col) {
-	cout<< row<< " "<< col<< endl;
+void UserInterface::afterTurn() {
+	game->charToPiece();
+	game->renderBoard();
 }
 
-void UserInterface::makeMove(int row, int col, int newRow, int newCol) {
-
+bool UserInterface::makeMove(int row, int col, int newRow, int newCol, string user) {
+	return game->makeMove(row, col, newRow, newCol, user);
 }
 
 int UserInterface::colToInt(char col) {

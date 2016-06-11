@@ -22,8 +22,8 @@ public:
 	string instanceof();
 	string getIcon();
 	string getPlayer();
-	// virtual void move(int row, int col) = 0;
-	// virtual bool possibleMove(int row, int col) = 0;
+
+	virtual bool move(int row, int col) = 0;
 	
 
 };
@@ -35,51 +35,51 @@ public:
 // Król
 class King : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	King(string userName, int userNum, int r, int c);
 
 };
 // Królowa
 class Queen : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	Queen(string userName, int userNum, int r, int c);
 };
 // Wieża
 class Rook : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	Rook(string userName, int userNum, int r, int c);
 };
 // Goniec
 class Bishop : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	Bishop(string userName, int userNum, int r, int c);
 };
 // Koń
 class Knight : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	Knight(string userName, int userNum, int r, int c);
 };
 // Pionek
 class Pawn : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	Pawn(string userName, int userNum, int r, int c);
 };
 // Puste pole
 class Empty : public Piece {
 private:
-
 public:
+	bool move(int row, int col);
 	Empty(int r, int c);
 };
 

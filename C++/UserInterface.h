@@ -9,8 +9,8 @@ public:
 	GameInterface* game;
 	void init();
 	void turn(string user);
-	void possibleMove(int row, int col);
-	void makeMove(int row, int col, int newRow, int newCol);
+	void afterTurn();
+	bool makeMove(int row, int col, int newRow, int newCol, string user);
 	int colToInt(char col); 
 	int rowToInt(int row);
 };

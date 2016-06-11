@@ -13,12 +13,10 @@ private:
 
 	// make initial setup for chess board
 	void initBoard();
-	void charToPiece();
-	void pieceToChar();
+	// void pieceToChar();
 
 	// return piece on given place
 	string getPiece(int row, int col);
-	// Piece getPieceObject(int row, int col);
 
 public:
 	// Constructor, run initBoard
@@ -26,6 +24,9 @@ public:
 
 	// Print actual board setup
 	void renderBoard();
+	void charToPiece();
+	bool makeMove(int row, int col, int newRow, int newCol, string user);
+	void deletePiece_board();
 
 };
 #endif
