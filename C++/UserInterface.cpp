@@ -4,25 +4,35 @@
 using namespace std;
 
 void UserInterface::init() {
-	
+	int saved;
+	char file_name[20];
 	cout << "\033c";
 	cout << "Welcome to CHESS \n\n";
+	cout << "Load saved game? [Yes - 1 /No - 0]\n";
+	cin >> saved;
+	if (saved) {
+		cout << "Enter file name: ";
+		cin >> file_name;
+	}
 	cout << "User 1. name: ";
 	cin >> user1;
 	cout << "User 2. name: ";
 	cin >> user2;
-	cout << "Tap Enter to start game";
-	cin.get();
-	game = new GameInterface(user1, user2);
+	game = new GameInterface(user1, user2, saved, file_name);
 	game->renderBoard();
 
 	while (1) {
-		cout << user1 << " - black\n" << user2 << " - white\n";
+		cout << user2 << " - white\n" << user1 << " - black\n";
 		turn(user1);
 		afterTurn();
-		cout << user1 << " - black\n" << user2 << " - white\n";
+		cout << user2 << " - white\n" << user1 << " - black\n";
 		turn(user2);
 		afterTurn();
+		cout << "Do you want to save this game? [Yes - 1 /No - 0]\n";
+		cin >> saved;
+		if (saved == 1) {
+			game->save();
+		}
 	}
 }
 void UserInterface::turn(string user) {

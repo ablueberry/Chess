@@ -3,7 +3,7 @@
 #include "UserInterface.h"
 using namespace std;
 
-int main (int argc, char *argv[]) {
+int main () {
 	UserInterface ui;
 	ui.init();
 	cout << endl; 

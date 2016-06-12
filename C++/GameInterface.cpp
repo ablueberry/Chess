@@ -1,13 +1,19 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "GameInterface.h"
 #include "Piece.h"
 using namespace std;
 
-GameInterface::GameInterface(string user1, string user2) 
+GameInterface::GameInterface(string user1, string user2, int saved, char* file_name) 
 	: userName1(user1),
 	  userName2(user2) {
-	initBoard();
-	charToPiece();
+	  	if (saved == 0) {
+			initBoard();
+		} else {
+	  		boardFromFile(file_name);
+	  	}
+		charToPiece();
 }
 
 void GameInterface::initBoard() {
@@ -15,10 +21,10 @@ void GameInterface::initBoard() {
 	for (int col = 0; col < COLS; col++) {
 		char_board[0][col] = row[col] + 32;
 		char_board[1][col] = 'p';
-		char_board[2][col] = ' ';
-		char_board[3][col] = ' ';
-		char_board[4][col] = ' ';
-		char_board[5][col] = ' ';
+		char_board[2][col] = '0';
+		char_board[3][col] = '0';
+		char_board[4][col] = '0';
+		char_board[5][col] = '0';
 		char_board[6][col] = 'P';
 		char_board[7][col] = row[col];
 	}
@@ -113,4 +119,42 @@ void GameInterface::deletePiece_board() {
 			delete piece_board[i][j];
 		}
 	}
+}
+
+void GameInterface::boardFromFile(char* file_name) {
+	ifstream file(file_name);
+	if (!file.good()) {
+		cout << "Can't open file\nLoad initial board";
+		cin.get();
+		cin.get();
+		initBoard();
+	} else {
+		string data;
+		for (int i = 0; i < 8; i++) {
+			getline(file, data);
+			for (int j = 0; j < 8; j++) {
+				char_board[i][j] = data[j];
+			}
+		}
+	}
+	file.close();
+}
+
+void GameInterface::save() {
+	char name[20];
+	cout << "Enter file name: ";
+	cin >> name;
+	ofstream file;
+	file.open(name, ios::out);
+	for (int i = 0; i < 8; i++) { 
+		for (int j = 0; j < 8; j++) {
+			if (char_board[i][j]==" ") {
+				file << "0";
+			} else {
+				file << char_board[i][j];
+			}
+		}
+		file << endl;
+	}
+	file.close();
 }

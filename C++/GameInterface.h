@@ -1,6 +1,7 @@
 #ifndef GAME_INTERFACE
 #define GAME_INTERFACE 
 #include <iostream>
+#include <fstream>
 #include "Piece.h"
 using namespace std;
 class GameInterface {
@@ -14,19 +15,20 @@ private:
 	// make initial setup for chess board
 	void initBoard();
 	// void pieceToChar();
-
+	void boardFromFile(char* file_name);
 	// return piece on given place
 	string getPiece(int row, int col);
 
 public:
 	// Constructor, run initBoard
-	GameInterface(string user1, string user2);
+	GameInterface(string user1, string user2, int saved, char* file_name);
 
 	// Print actual board setup
 	void renderBoard();
 	void charToPiece();
 	bool makeMove(int row, int col, int newRow, int newCol, string user);
 	void deletePiece_board();
+	void save();
 
 };
 #endif
